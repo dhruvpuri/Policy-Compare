@@ -1,0 +1,476 @@
+   [INFO] Document text length: 38313 characters
+   [INFO] Text sample: 5
+MOST IMPORTANT TERMS & CONDITIONS (MITC)
+Attention: PLEASE READ CAREFULLY BEFORE SIGNING
+ACKNOWLEDGEMENT FORM
+Loan Account Number : 
+ 
+ 
+ 
+(For Office Use Only)
+This is with reference to the Facilit...
+
+[STEP1] Rule-based extraction...
+   [OK] Rule-based found: 13 facts
+     - fees_and_charges.processing_fee: 0.50% to 3.00% (conf=0.75)
+       -> src: orm for any further details/features. Standard Charges A 1. Login Fee/Processing Fee 0.50% to 3.00% plus applicable taxes and other statutor... ()
+     - interest_rates.reset_frequency: Monthly (conf=0.75)
+       -> src: us applicable interest tax or other statutory levies. (iv)  Reset Period: Monthly (The reset dates for effecting the rate of  interest chang... ()
+     - interest_rates.benchmark_rate: IHPLR (conf=0.75)
+       -> src: elow. 5     (b) Adjustable/ Floating Interest Rate: (i)     IHPLR =   % per annum as on the date of the Facility  Agreement. ( ()
+     - interest_rates.notification_method: branch of ICICI Bank Limited/ICICI HFC as per the borrower’s communication address or customer can a (conf=0.75)
+       -> src: t/settlement of the Facility at the  nearest loan servicing branch of ICICI Bank Limited/ICICI HFC as per the borrower’s communication addre... ()
+     - documents.required_documents: Will be released to you within 30 days from the date of full repayment (conf=0.75)
+       -> src: red as  working days for the turn-around time. The original property/title documents will be released to you within 30 days from the date of... ()
+     - grievance.process: Level 1 1 (conf=0.75)
+       -> src: siting hours are  10:00 am to 4:00 pm. Customer Service and Grievance Redressal : Level 1 1.   Call Center, Email & Walk in at branches of t... ()
+     - loan_amount_and_ltv.loan_amount_currency: INR 500 (conf=0.75)
+       -> src: ACH/Payment  Instrument dishonour Charges, per  transaction ` 500/- (Rupees Five Hundred Only) or such other amount as may be ()
+     - repayment.emi_currency: ₹ (conf=0.75)
+       -> src: onthly Installment (EMI) 8. Total number of installments 9. EMI (`)  (Subject to change with a change in IHPLR, in case of  Adj ()
+     - document_info.bank_name: Icici (conf=0.75)
+       -> src: ity Agreement dated   executed between   (the borrower) and ICICI Home Finance Company Limited (“IHFC”). The  following are t ()
+     - interest_rates.benchmark: IHPLR (conf=0.75)
+       -> src: elow. 5     (b) Adjustable/ Floating Interest Rate: (i)     IHPLR =   % per annum as on the date of the Facility  Agreement. ( ()
+     - security_and_insurance.primary_security: Act, 2002 (sarfaesi act) or under any other law, is followed purely as per the (conf=0.75)
+       -> src: and Reconstruction of Financial  Assets and Enforcement of Security Interest Act, 2002 (SARFAESI Act) or under any other law, is followed pu... ()
+
+[STEP2] Gap analysis...
+   [MISSING] Total missing terms: 10
+     fees_and_charges: 3 missing
+       - administrative_fee
+       - legal_charges
+       - valuation_charges
+     prepayment_and_foreclosure: 3 missing
+       - prepayment_penalty
+       - foreclosure_charges
+       - lock_in_period
+     interest_rates: 1 missing
+       - rate_change_communication
+     documents: 1 missing
+       - kyc_documents
+     grievance: 2 missing
+       - complaint_procedure
+       - customer_service
+
+[STEP3] Focused LLM prompt (sanitized for printing):
+[BEGIN PROMPT]
+
+
+PROMPT_VERSION: v1.3
+THIS IS A ICICI HOME-LOAN MITC DOCUMENT.
+
+You are completing a loan document analysis. Advanced rule-based extraction has already found most terms, but these HARD-TO-FIND terms are still MISSING:
+
+fees_and_charges: administrative_fee, legal_charges, valuation_charges
+prepayment_and_foreclosure: prepayment_penalty, foreclosure_charges, lock_in_period
+interest_rates: rate_change_communication
+documents: kyc_documents
+grievance: complaint_procedure, customer_service
+
+FOCUS ONLY on these specific missing terms. Our rules now handle common patterns, so look for:
+
+DIFFICULT PATTERNS TO FIND:
+
+PENAL CHARGES & LATE PAYMENTS:
+- Look for: "Penal interest @ 2% p.a. over EBR", "Late payment charge: 2% p.a.", "Default interest rate: 2% over applicable rate"
+- Bounce charges: "Bounce charge: Rs.500", "Returned cheque charges"
+- Penal interest rates: Often buried in fine print or penalty sections
+
+TIERED LTV RATIOS:
+- Look for: "Loan-to-Value Ratio: Up to 90% for loans up to Rs.30 Lakhs", "LTV: Up to 80% for loans up to Rs.50 Lakhs"
+- Table format: "90% - Up to Rs.30 Lakhs", "80% - Up to Rs.50 Lakhs", "75% - Above Rs.50 Lakhs"
+- Maximum LTV: "Maximum LTV: 90% for loans up to Rs.30 Lakhs"
+
+INSURANCE & SECURITY REQUIREMENTS:
+- Insurance coverage: "Insurance coverage: Rs.5 Lakhs minimum", "Life insurance: Mandatory"
+- Property insurance: "Property insurance: As per bank's requirement", "Fire insurance: Compulsory"
+- Primary security: "Primary security: Property mortgage", "Security: Equitable mortgage"
+
+SPECIAL ELIGIBILITY CATEGORIES:
+- NRI: "NRI: Eligible with additional documentation", "Non-Resident Indian: Special rates"
+- Defense personnel: "Defense personnel: Special rates available", "Armed forces: Concessional rates"
+- Government employees: "Government employees: Concessional rates", "Public sector: Special rates"
+
+COMPOUND FEES:
+- Look for: "1.50% or Rs.4,500 whichever is higher", "2% or Rs.5,000 whichever is lower"
+- Processing fees with minimum/maximum: "0.50% to 3.00% (min Rs.2,000, max Rs.10,000)"
+
+FEES & CHARGES:
+- Administrative fees: Often in fine print as "Admin fee", "Documentation charges", or in tariff schedules
+- Legal/Valuation charges: May be listed as "As applicable", "As per actuals", or ranges
+- Template fields: Look for "___", "[ ]", blank spaces after fee names
+
+ELIGIBILITY CRITERIA:
+- Income requirements: "Net monthly income", "Salary requirement", "Income criteria"
+- CIBIL score: May be stated as "Credit score", "Credit rating", "Score requirement"
+- Age limits: "Age criteria", "Maximum/Minimum age", "Age at loan maturity"
+- Employment: "Service requirement", "Experience needed", "Employment criteria"
+
+DOCUMENTS REQUIRED:
+- Income proof: "Salary slips", "Income documents", "ITR", "Form 16"
+- Identity/Address: "KYC documents", "ID proof", "Address proof"
+- Property papers: "Sale deed", "NOC", "Approved plans"
+
+GRIEVANCE & SUPPORT:
+- Contact details: Phone numbers, email IDs, website URLs
+- Escalation process: "Level 1", "Level 2", "Ombudsman", "Senior Manager"
+- Timeline: "7 days", "15 days", response time commitments
+
+ENHANCED EXTRACTION STRATEGY:
+BANK-SPECIFIC: Extract insurance mandates and special eligibility clauses.
+
+- Check TABLES and SCHEDULES for fee structures and LTV bands
+- Look in APPENDICES and separate sections for document lists
+- Scan for NUMERICAL VALUES (age limits, income thresholds, percentages)
+- Find CONTACT INFORMATION (phone, email, branch details)
+- Look for POLICY STATEMENTS with specific criteria
+- Check FOOTNOTES and small print sections
+- Search for CLAUSE REFERENCES that might contain details
+- Look for PENALTY SECTIONS and INSURANCE CLAUSES
+- Check for SPECIAL CATEGORY MENTIONS (NRI, defense, government)
+
+TEMPLATE HANDLING:
+- If fields are blank ("___", "[ ]", empty spaces), return "Template field - value not specified"
+- If values say "As applicable" or "As per actuals", include that exact text
+- If ranges are given ("18 to 70 years"), extract the full range
+
+EXAMPLE JSON OUTPUTS:
+[{"section":"Penal Charges","field":"late_payment_penalty","value":"2% p.a. over EBR","source_text":"Penal interest @ 2% p.a. over EBR","confidence":0.9}]
+[{"section":"Loan Amount & LTV","field":"ltv_bands","value":"[{\"ltv\":\"90%\",\"min_amount\":0,\"max_amount\":3000000}]","source_text":"90% - Up to Rs.30 Lakhs","confidence":0.9}]
+[{"section":"Security & Insurance","field":"insurance_requirement","value":"INR 500,000 minimum","source_text":"Insurance coverage: Rs.5L minimum","confidence":0.9}]
+[{"section":"Prepayment & Foreclosure","field":"lock_in_period","value":"6 months","source_text":"Lock-in period: 6 months","confidence":0.9}]
+[{"section":"Prepayment & Foreclosure","field":"lock_in_period","value":"first 12 EMI","source_text":"Lock-in period: first 12 EMI","confidence":0.9}]
+[{"section":"Documents","field":"required_documents","value":"List of documents: ID proof, address proof","source_text":"List of documents: ID proof, address proof","confidence":0.9}]
+[{"section":"Documents","field":"required_documents","value":"Duplicate copy of welcome pack, amortisation schedule, key fact statement","source_text":"Request for duplicate copy of welcome pack, amortisation schedule, key fact statement","confidence":0.9}]
+
+Return JSON array format:
+[{"section": "section_name", "field": "field_name", "value": "extracted_value", "source_text": "exact quote", "confidence": 0.9}]
+
+DOCUMENT TEXT:
+5
+MOST IMPORTANT TERMS & CONDITIONS (MITC)
+Attention: PLEASE READ CAREFULLY BEFORE SIGNING
+ACKNOWLEDGEMENT FORM
+Loan Account Number : 
+ 
+ 
+ 
+(For Office Use Only)
+This is with reference to the Facility Agreement dated 
+ executed between 
+ (the borrower) and ICICI Home Finance Company Limited (“IHFC”). The 
+following are the major terms & conditions with respect to the facility availed by the borrower:
+1.
+Facility Agreement Date
+2.
+Facility Amount Not Exceeding(`)
+3.
+Facility Type**
+Others:(Please specify) 
+ Home Loan 
+ Land Loan 
+ Office Premises 
+ Home Equity
+ Home Improvement 
+ Others
+________________________________
+4.
+Rate Type
+a. 
+ Fixed b. 
+ Adjustable/floating Interest Rate c. 
+ Initial
+Fixed & then Adjustable/floating Interest Rate 
+ Renewable
+Fixed Interest Rate
+5.
+Rate of Interest
+5    (a) Fixed Rate of Interest
+(i)  The Borrower/s shall pay interest on the principal amount of the 
+Facility outstanding from time to time monthly at 
+% per 
+annum plus applicable interest tax or other statutory levy on the 
+dates mentioned below.
+(ii) The Borrower/s shall pay PEMI at ___ % per annum plus applicable 
+interest tax or other statutory levy until commencement of the 
+EMI. Such PEMI will be calculated from the date(s) of respective 
+disbursement(s) and shall be payable on the dates mentioned 
+below.
+5     (b) Adjustable/ Floating Interest Rate:
+(i)     IHPLR = 
+ % per annum as on the date of the Facility 
+Agreement.
+(ii)   until varied by IHFC in terms of the facility Agreement, the 
+Borrower/s shall pay the Adjustable Rate of Interest=
+% 
+per annum (i.e IHPLR +/- margin of 
+ %) plus applicable 
+interest tax or other statutory levies.
+(iii) The Borrower/s shall pay PEMI at 
+ % per annum until 
+commencement of the EMI payable on the dates mentioned below 
+plus applicable interest tax or other statutory levies.
+(iv)  Reset Period: Monthly (The reset dates for effecting the rate of 
+interest changes will be the first date of the coming month after 
+reset)
+      (Any changes in the adjustable interest rate will be as detailed in 
+Clause 4 of the Facility agreement governing the facilities and 
+mentioned on the website)
+5    (c) Initial Fixed and then Adjustable/Floating Interest Rate.
+      Fixed for 
+ years and then Adjustable/Floating Interest rate.
+     For the fixed period of 
+ years interest shall be computed 
+as per clause 5 (a) above; then it becomes
+IHFC Copy
+
+6
+ 
+       Adjustable/Floating Interest Rate as per clause 5 (b), above. 
+5     (d) Renewable Fixed Interest Rate:
+(i)     The Borrower/s shall pay interest on the principal amount of 
+the Facility outstanding from time to time monthly at 
+ 
+% per annum plus applicable interest tax or other statutory 
+levy on the dates mentioned below.
+(ii)   IHPLR= 
+ % per annum as on date of Facility Agreement 
+Until varied by IHFC in terms of Facility Agreement, the 
+Borrower/s shall pay the Fixed Rate of Interest = 
+ % 
+per annum (i.e IHPLR+/-margin of 
+ %)plus applicable 
+interest tax or other statutory levies.
+6.
+Tenor
+___ months (Subject to change with a change in IHPLR, in cases of 
+Adjustable/Floating Rate of Interest).
+7.
+Installment Type
+Equated Monthly Installment (EMI)
+8.
+Total number of installments
+9.
+EMI (`)
+ (Subject to change with a change in IHPLR, in case of 
+Adjustable/Floating Rate of Interest).
+10.
+Date of Commencement of EMI
+11.
+Due Date for payment of first EMI
+12.
+Moratorium/Subsidy
+(Mention ‘NA’ if not applicable)
+13.
+Non-refundable processing fee/
+administrative fee:
+“
+ (Rupees 
+ 
+ only)collected as tranche I at the time of login
+ (Rupees 
+ 
+ ) collected as tranche II at the time of sanction of the 
+facility.”
+14.
+Security
+(Mention Address of Property)
+15.
+Other Security (if any)
+16.
+Guarantor/s (if any)
+17.
+Insurance (optional) - if availed 
+through IHFC
+(For Details of Insurance refer Note 1)
+Scheme: 
+ 
+` 
+ (Rupees 
+ only)
+18.
+Conditions for Disbursement of
+the Loan
+To comply with all preconditions for disbursement of the loan as 
+mentioned in the Sanction Letter.
+The disbursement of the facility is subject to conditions agreed 
+upon & detailed in the Facility agreement shared with you.
+Note 1 : Details of Insurance Policy:
+1. Life insurance – Insurance to cover the life of the borrowers up to the loan amount.
+2. Property insurance – Insurance to cover the property which is offered as security for the loan.
+3. Health insurance – Insurance to cover any medical expenses incurred by the Borrower/s and family members.
+Please refer the Insurance application form for any further details/features.
+Standard Charges
+A
+1.
+Login Fee/Processing Fee
+0.50% to 3.00% plus applicable taxes and other statutory levies if 
+any. The processing/login fee is a one-time non-refundable fee and 
+is collected by IHFC for the purpose of appraising the Application 
+for the Facility and the same is independant of the outcome/result of 
+such appraisal. Please note that the processing/login fee is payable 
+at the time of submitting of Application Form, duly filled in, by way 
+of Cheque/Demand Draft favouring ICICI Home Finance Company 
+Limited and / or such other mode as may be acceptable to IHFC
+2.
+Part Prepayment Fees
+NIL
+
+7
+3.
+Cheque/ECS/NACH/Payment 
+Instrument dishonour Charges, per 
+transaction
+` 500/- (Rupees Five Hundred Only) or such other amount as may be 
+specified by IHFC from time to time plus applicable taxes and  other 
+statutory levies if any.
+4.
+Copy of original documents
+` 1000/- (Rupees One Thousand only) plus applicable taxes and other 
+statutory levies if any.
+5.
+Repayment mode swap charges 
+(PDC to PDC)
+` 1000/- (Rupees One Thousand only) plus applicable taxes and other 
+statutory levies if any.
+6.
+Charges 
+on 
+account 
+of 
+non-
+submission 
+of 
+any 
+Payment 
+Instrument(PDC/NACH 
+Mandate 
+form, electronic security mandates 
+etc.) for payment of Instalment, per 
+transaction
+` 2000/- (Rupees Two Thousand only) plus applicable taxes and other 
+statutory levies if any.
+7.
+List of Documents
+` 500/- (Rupees Five Hundred only) plus applicable taxes and other 
+statutory levies if any.
+8.
+Charges for swap of property
+` 10000/- (Rupees Ten Thousand only) plus applicable taxes and other 
+statutory levies if any.
+9.
+Documents Retrieval Charges
+` 500/- (Rupees Five Hundred Only) plus applicable taxes and other 
+statutory levies if any.
+10.
+Cheque / Repayment Mode swap 
+charges other than PDC to PDC
+` 500/- (Rupees Five Hundred Only)- plus applicable taxes and other 
+statutory levies if any.
+11.
+Charges for Amortisation Schedule
+` 100/- (Rupees One Hundred only) plus applicable taxes and other 
+statutory levies if any.
+12.
+Penal Charges in the event of 
+default/delay in payment/repayment 
+of any part of the loan amount on 
+due date
+1.50% per month(p.m.) on the overdue/defaulted amount over and above 
+the applicable Interest Rate (plus applicable taxes or other statutory 
+levies, if any)
+13.
+Penal Charges in the event of breach 
+of other material terms ( other than 
+payment default)
+ICICI HFC reserves the right to levy and recover the applicable Penal 
+Charges at its sole discretion, at the rate specified hereinabove under 
+point 12 on the outstanding amount plus applicable taxes and other 
+statutory levies, if any
+14.
+Charges for Statement of account
+` 100/- (Rupees One Hundred only) plus applicable taxes and other 
+statutory levies if any.
+15.
+Charges for prepayment statement
+` 500/- (Rupees Five Hundred only) plus applicable taxes and other 
+statutory levies if any.
+16.
+Charges for duplicate NOC / No due 
+certificate
+` 500/- (Rupees Five Hundred only) plus applicable taxes and other 
+statutory levies if any.
+17.
+Conversion Charges
+0.50% for housing loan, 1.00% for the non-housing loan plus applicable 
+taxes and other statutory levies if any, on principal outstanding.
+18.
+Stamp Duty and other statutory 
+charges
+As per Applicable Law
+B. Full Prepayment / Foreclosure Charges
+Sr No
+Product
+Prepayment Charges*
+1
+Floating rate Housing loan
+NIL
+2
+Floating rate Non Housing loan where the Borrower(s) is in
+
+JSON RESPONSE:
+
+
+[END PROMPT]
+
+[STEP3b] Small LLM test call...
+   [OK] LLM returned: 4 facts
+     - fees_and_charges.administrative_fee: Template field - value not specified (conf=0.9)
+       -> src: Non-refundable processing fee/ administrative fee: “ (Rupees only)collected as tranche I at the time of login (Rupees ) collected as tranche... ()
+     - prepayment_and_foreclosure.prepayment_penalty: NIL (conf=0.9)
+       -> src: Part Prepayment Fees NIL ()
+     - prepayment_and_foreclosure.foreclosure_charges: NIL for floating rate housing loan (conf=0.9)
+       -> src: Floating rate Housing loan NIL ()
+     - interest_rates.rate_change_communication: Detailed in Clause 4 of the Facility agreement and mentioned on the website (conf=0.9)
+       -> src: (Any changes in the adjustable interest rate will be as detailed in Clause 4 of the Facility agreement governing the facilities and mentione... ()
+
+[STEP4] Full smart extraction...
+   [RESULT] Smart extraction total: 14 facts
+     [SECTION] fees_and_charges: 1 facts
+       - fees_and_charges.processing_fee: 0.50% to 3.00% (conf=0.75)
+         -> src: orm for any further details/features. Standard Charges A 1. Login Fee/Processing Fee 0.50% to 3.00% plus applicable taxes and other statutor... ()
+     [SECTION] interest_rates: 5 facts
+       - interest_rates.reset_frequency: Monthly (conf=0.75)
+         -> src: us applicable interest tax or other statutory levies. (iv)  Reset Period: Monthly (The reset dates for effecting the rate of  interest chang... ()
+       - interest_rates.benchmark_rate: IHPLR (conf=0.75)
+         -> src: elow. 5     (b) Adjustable/ Floating Interest Rate: (i)     IHPLR =   % per annum as on the date of the Facility  Agreement. ( ()
+       - interest_rates.notification_method: branch of ICICI Bank Limited/ICICI HFC as per the borrower’s communication address or customer can a (conf=0.75)
+         -> src: t/settlement of the Facility at the  nearest loan servicing branch of ICICI Bank Limited/ICICI HFC as per the borrower’s communication addre... ()
+       - interest_rates.benchmark: IHPLR (conf=0.75)
+         -> src: elow. 5     (b) Adjustable/ Floating Interest Rate: (i)     IHPLR =   % per annum as on the date of the Facility  Agreement. ( ()
+       - interest_rates.reset_communication: Changes in the adjustable interest rate will be as detailed in Clause 4 of the Facility agreement and mentioned on the website. (conf=0.9)
+         -> src: (Any changes in the adjustable interest rate will be as detailed in  Clause 4 of the Facility agreement governing the facilities and  mentio... ()
+     [SECTION] documents: 1 facts
+       - documents.required_documents: Will be released to you within 30 days from the date of full repayment (conf=0.75)
+         -> src: red as  working days for the turn-around time. The original property/title documents will be released to you within 30 days from the date of... ()
+     [SECTION] grievance: 1 facts
+       - grievance.process: Level 1 1 (conf=0.75)
+         -> src: siting hours are  10:00 am to 4:00 pm. Customer Service and Grievance Redressal : Level 1 1.   Call Center, Email & Walk in at branches of t... ()
+     [SECTION] loan_amount_and_ltv: 1 facts
+       - loan_amount_and_ltv.loan_amount_currency: INR 500 (conf=0.75)
+         -> src: ACH/Payment  Instrument dishonour Charges, per  transaction ` 500/- (Rupees Five Hundred Only) or such other amount as may be ()
+     [SECTION] repayment: 1 facts
+       - repayment.emi_currency: ₹ (conf=0.75)
+         -> src: onthly Installment (EMI) 8. Total number of installments 9. EMI (`)  (Subject to change with a change in IHPLR, in case of  Adj ()
+     [SECTION] document_info: 1 facts
+       - document_info.bank_name: Icici (conf=0.75)
+         -> src: ity Agreement dated   executed between   (the borrower) and ICICI Home Finance Company Limited (“IHFC”). The  following are t ()
+     [SECTION] security_and_insurance: 1 facts
+       - security_and_insurance.primary_security: Act, 2002 (sarfaesi act) or under any other law, is followed purely as per the (conf=0.75)
+         -> src: and Reconstruction of Financial  Assets and Enforcement of Security Interest Act, 2002 (SARFAESI Act) or under any other law, is followed pu... ()
+     [SECTION] prepayment_and_foreclosure: 2 facts
+       - prepayment_and_foreclosure.foreclosure_penalty: NIL (conf=0.9)
+         -> src: Part Prepayment Fees NIL ()
+       - prepayment_and_foreclosure.foreclosure_charges: NIL for floating rate housing loans (conf=0.9)
+         -> src: Floating rate Housing loan NIL ()

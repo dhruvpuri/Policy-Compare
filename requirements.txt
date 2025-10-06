@@ -1,0 +1,34 @@
+# Core web framework and API
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# UI framework
+streamlit==1.28.1
+
+# Document processing
+pymupdf==1.23.8
+pdfplumber==0.11.4
+python-multipart==0.0.6
+python-docx==1.1.0
+
+# AI/LLM integration
+google-generativeai==0.3.2
+
+# Data processing
+pandas==2.1.3
+numpy==1.24.3
+plotly==5.17.0
+
+# Testing dependencies
+pytest==7.4.3
+pytest-asyncio==0.21.1
+httpx==0.25.2  # Required for FastAPI TestClient
+anyio==3.7.1   # Required for async testing
+
+# Additional utilities
+python-dotenv==1.0.0
+pydantic==2.5.0
+typing-extensions==4.8.0
+
+# HTTP requests for UI
+requests==2.31.0

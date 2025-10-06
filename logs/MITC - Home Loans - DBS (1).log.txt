@@ -1,0 +1,161 @@
+   [INFO] Document text length: 19 characters
+   [INFO] Text sample: `
+`
+`
+`
+`
+`
+`
+
+
+
+
+
+...
+
+[STEP1] Rule-based extraction...
+   [OK] Rule-based found: 0 facts
+
+[STEP2] Gap analysis...
+   [MISSING] Total missing terms: 16
+     fees_and_charges: 4 missing
+       - processing_fee
+       - administrative_fee
+       - legal_charges
+       - valuation_charges
+     prepayment_and_foreclosure: 3 missing
+       - prepayment_penalty
+       - foreclosure_charges
+       - lock_in_period
+     interest_rates: 4 missing
+       - reset_frequency
+       - benchmark_rate
+       - rate_change_communication
+       - notification_method
+     documents: 2 missing
+       - required_documents
+       - kyc_documents
+     grievance: 3 missing
+       - process
+       - complaint_procedure
+       - customer_service
+
+[STEP3] Focused LLM prompt (sanitized for printing):
+[BEGIN PROMPT]
+
+
+PROMPT_VERSION: v1.3
+THIS IS A DBS/HSBC HOME-LOAN MITC DOCUMENT.
+
+You are completing a loan document analysis. Advanced rule-based extraction has already found most terms, but these HARD-TO-FIND terms are still MISSING:
+
+fees_and_charges: processing_fee, administrative_fee, legal_charges, valuation_charges
+prepayment_and_foreclosure: prepayment_penalty, foreclosure_charges, lock_in_period
+interest_rates: reset_frequency, benchmark_rate, rate_change_communication, notification_method
+documents: required_documents, kyc_documents
+grievance: process, complaint_procedure, customer_service
+
+FOCUS ONLY on these specific missing terms. Our rules now handle common patterns, so look for:
+
+DIFFICULT PATTERNS TO FIND:
+
+PENAL CHARGES & LATE PAYMENTS:
+- Look for: "Penal interest @ 2% p.a. over EBR", "Late payment charge: 2% p.a.", "Default interest rate: 2% over applicable rate"
+- Bounce charges: "Bounce charge: Rs.500", "Returned cheque charges"
+- Penal interest rates: Often buried in fine print or penalty sections
+
+TIERED LTV RATIOS:
+- Look for: "Loan-to-Value Ratio: Up to 90% for loans up to Rs.30 Lakhs", "LTV: Up to 80% for loans up to Rs.50 Lakhs"
+- Table format: "90% - Up to Rs.30 Lakhs", "80% - Up to Rs.50 Lakhs", "75% - Above Rs.50 Lakhs"
+- Maximum LTV: "Maximum LTV: 90% for loans up to Rs.30 Lakhs"
+
+INSURANCE & SECURITY REQUIREMENTS:
+- Insurance coverage: "Insurance coverage: Rs.5 Lakhs minimum", "Life insurance: Mandatory"
+- Property insurance: "Property insurance: As per bank's requirement", "Fire insurance: Compulsory"
+- Primary security: "Primary security: Property mortgage", "Security: Equitable mortgage"
+
+SPECIAL ELIGIBILITY CATEGORIES:
+- NRI: "NRI: Eligible with additional documentation", "Non-Resident Indian: Special rates"
+- Defense personnel: "Defense personnel: Special rates available", "Armed forces: Concessional rates"
+- Government employees: "Government employees: Concessional rates", "Public sector: Special rates"
+
+COMPOUND FEES:
+- Look for: "1.50% or Rs.4,500 whichever is higher", "2% or Rs.5,000 whichever is lower"
+- Processing fees with minimum/maximum: "0.50% to 3.00% (min Rs.2,000, max Rs.10,000)"
+
+FEES & CHARGES:
+- Administrative fees: Often in fine print as "Admin fee", "Documentation charges", or in tariff schedules
+- Legal/Valuation charges: May be listed as "As applicable", "As per actuals", or ranges
+- Template fields: Look for "___", "[ ]", blank spaces after fee names
+
+ELIGIBILITY CRITERIA:
+- Income requirements: "Net monthly income", "Salary requirement", "Income criteria"
+- CIBIL score: May be stated as "Credit score", "Credit rating", "Score requirement"
+- Age limits: "Age criteria", "Maximum/Minimum age", "Age at loan maturity"
+- Employment: "Service requirement", "Experience needed", "Employment criteria"
+
+DOCUMENTS REQUIRED:
+- Income proof: "Salary slips", "Income documents", "ITR", "Form 16"
+- Identity/Address: "KYC documents", "ID proof", "Address proof"
+- Property papers: "Sale deed", "NOC", "Approved plans"
+
+GRIEVANCE & SUPPORT:
+- Contact details: Phone numbers, email IDs, website URLs
+- Escalation process: "Level 1", "Level 2", "Ombudsman", "Senior Manager"
+- Timeline: "7 days", "15 days", response time commitments
+
+ENHANCED EXTRACTION STRATEGY:
+BANK-SPECIFIC: Extract fee schedules and security interest details.
+
+- Check TABLES and SCHEDULES for fee structures and LTV bands
+- Look in APPENDICES and separate sections for document lists
+- Scan for NUMERICAL VALUES (age limits, income thresholds, percentages)
+- Find CONTACT INFORMATION (phone, email, branch details)
+- Look for POLICY STATEMENTS with specific criteria
+- Check FOOTNOTES and small print sections
+- Search for CLAUSE REFERENCES that might contain details
+- Look for PENALTY SECTIONS and INSURANCE CLAUSES
+- Check for SPECIAL CATEGORY MENTIONS (NRI, defense, government)
+
+TEMPLATE HANDLING:
+- If fields are blank ("___", "[ ]", empty spaces), return "Template field - value not specified"
+- If values say "As applicable" or "As per actuals", include that exact text
+- If ranges are given ("18 to 70 years"), extract the full range
+
+EXAMPLE JSON OUTPUTS:
+[{"section":"Penal Charges","field":"late_payment_penalty","value":"2% p.a. over EBR","source_text":"Penal interest @ 2% p.a. over EBR","confidence":0.9}]
+[{"section":"Loan Amount & LTV","field":"ltv_bands","value":"[{\"ltv\":\"90%\",\"min_amount\":0,\"max_amount\":3000000}]","source_text":"90% - Up to Rs.30 Lakhs","confidence":0.9}]
+[{"section":"Security & Insurance","field":"insurance_requirement","value":"INR 500,000 minimum","source_text":"Insurance coverage: Rs.5L minimum","confidence":0.9}]
+[{"section":"Prepayment & Foreclosure","field":"lock_in_period","value":"6 months","source_text":"Lock-in period: 6 months","confidence":0.9}]
+[{"section":"Prepayment & Foreclosure","field":"lock_in_period","value":"first 12 EMI","source_text":"Lock-in period: first 12 EMI","confidence":0.9}]
+[{"section":"Documents","field":"required_documents","value":"List of documents: ID proof, address proof","source_text":"List of documents: ID proof, address proof","confidence":0.9}]
+[{"section":"Documents","field":"required_documents","value":"Duplicate copy of welcome pack, amortisation schedule, key fact statement","source_text":"Request for duplicate copy of welcome pack, amortisation schedule, key fact statement","confidence":0.9}]
+
+Return JSON array format:
+[{"section": "section_name", "field": "field_name", "value": "extracted_value", "source_text": "exact quote", "confidence": 0.9}]
+
+DOCUMENT TEXT:
+`
+`
+`
+`
+`
+`
+`
+
+
+
+
+
+
+
+JSON RESPONSE:
+
+
+[END PROMPT]
+
+[STEP3b] Small LLM test call...
+   [OK] LLM returned: 0 facts
+
+[STEP4] Full smart extraction...
+   [RESULT] Smart extraction total: 0 facts

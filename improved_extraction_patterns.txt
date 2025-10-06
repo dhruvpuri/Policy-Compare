@@ -1,0 +1,29 @@
+IMPROVED EXTRACTION PATTERNS BASED ON PDF ANALYSIS
+============================================================
+
+Loan Amounts:
+  - ed by the borrower: 1. Facility Agreement Date 2. Facility Amount Not Exceeding(`) 3. Facility Type*
+  - t    (iv) Date of reset of interest :  1.  Loan   Sanctioned Amount :    (i)  Type :    (ii) Interes
+  - ve  the option to prepay up to 25% of the opening principal amount every financial year, of  the loa
+  - ve  the option to prepay up to 25% of the opening principal amount every financial year, of the  loa
+
+Interest Rates:
+  - s  Additional   On Accrual  Monthly  A maximum of 18% P.A on the      Interest      defaulted sum.  
+  - s 9. EMI (`)  (Subject to change with a change in IHPLR, in case of  Adjustable/Floating Rate of Int
+
+EMI & Repayment:
+  - Repayment of the Loan [ * ]    (a)  The amount of EMI :  5.  Loan Tenure :  1/7   === PAGE 2 === A. 
+  - encement of EMI 11. Due Date for payment of first EMI 12. Moratorium/Subsidy (Mention ‘NA’ if not ap
+  - ng Rate of Interest). 10. Date of Commencement of EMI 11. Due Date for payment of first EMI 12. Mora
+
+Prepayment & Foreclosure:
+  - 36 months, the borrower shall have  the option to prepay up to 25% of the opening principal amount e
+
+Processing Fees:
+  - details/features. Standard Charges A 1. Login Fee/Processing Fee 0.50% to 3.00% plus applicable taxe
+
+Penal Charges:
+  - E 9 === 12 3. Cheque/ECS/NACH/Payment  Instrument dishonour Charges, per  transaction ` 500/- (Rupee
+  - GE 3 === 7 3. Cheque/ECS/NACH/Payment  Instrument dishonour Charges, per  transaction ` 500/- (Rupee
+
+Reset & Communication:

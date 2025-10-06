@@ -1,0 +1,828 @@
+   [INFO] Document text length: 20633 characters
+   [INFO] Text sample: MOST IMPORTANT TERMS AND CONDITIONS (MITC)
+ 
+(b)  Guarantee: Names of the Guarantor/s (if any) : 
+ 
+(c)  Other Security interest (if any) : 
+ 
+(a)  Property description :
+ 
+Security of the loan would ...
+
+[STEP1] Rule-based extraction...
+   [OK] Rule-based found: 14 facts
+     - fees_and_charges.processing_fee: 1.50% (conf=0.75)
+       -> src: s  No   Charge levied  7  Fees for Loans under HDFC Reach   Processing Fees  At    Once  Upto 1.50% of the loan amount +    Scheme     Appli... ()
+     - fees_and_charges.conversion_fee: 1.75% (conf=0.75)
+       -> src: ufixed fixed rate to  Conversion Fees  On Conversion  Once  1.75% of the Principal Outstanding    Variable rate         and undisbursed amou... ()
+     - prepayment_and_foreclosure.foreclosure_penalty: 25.0% (conf=0.75)
+       -> src: d up till 36 months, the borrower shall have  the option to prepay up to 25% of the opening principal amount every financial year, of the  l... ()
+     - interest_rates.benchmark_rate: RPLR (conf=0.75)
+       -> src: HDFC informs of such change in Retail Prime Lending Rate  (RPLR) through a 'press release' in major leading news papers acr ()
+     - interest_rates.reset_communication: HDFC shall endeavor to keep its Borrowers informed of any change in interest rates through its official
+website (www (conf=0.75)
+       -> src: executed/ to be executed between the Borrower/s and HDFC.  HDFC shall endeavor to keep its Borrowers informed of any change in interest rate... ()
+     - interest_rates.notification_method: www.hdfc.com. (conf=0.75)
+       -> src: such change in Retail Prime Lending Rate  (RPLR) through a 'press release' in major leading news papers across India and on its website www.... ()
+     - documents.required_documents: Miscellaneous (conf=0.75)
+       -> src: Receipts  Dishonour  on no. of          Dishonour  20 List of documents  Miscellaneous  Event  On every  Upto Rs. 500 plus taxes.      Recei... ()
+     - grievance.process: There can be instances where the borrower is not satisfied with the services provided (conf=0.75)
+       -> src: ine): Within 3 working days of the receipt of request. 14.  Grievance Redressal:   There can be instances where the Borrower is not satisfie... ()
+     - loan_amount_and_ltv.sanctioned_amount: opening principal amount (conf=0.75)
+       -> src: borrower shall have  the option to prepay up to 25% of the opening principal amount every financial year, of the  loan, without any prepayme... ()
+     - prepayment_and_foreclosure.foreclosure_option: 25.0% (conf=0.75)
+       -> src: d up till 36 months, the borrower shall have  the option to prepay up to 25% of the opening principal amount every financial year, of the  l... ()
+     - document_info.bank_name: Hdfc (conf=0.75)
+       -> src: other collateral/ interim   security as may be required by HDFC.  7.  Security/Collateral for the Loan [ * ]  3.   Installm ()
+     - fees_and_charges.fee_amount: 4500 (conf=0.75)
+       -> src: of the Loan amount or    Premises Loans.    Application    Rs. 4500/- whichever is higher +            taxes and statutory levi ()
+     - interest_rates.benchmark: RPLR (conf=0.75)
+       -> src: HDFC informs of such change in Retail Prime Lending Rate  (RPLR) through a 'press release' in major leading news papers acr ()
+     - security_and_insurance.primary_security: (if any) : (conf=0.75)
+       -> src: uarantee: Names of the Guarantor/s (if any) :    (c)  Other Security interest (if any) :    (a)  Property description :   Security of the lo... ()
+
+[STEP2] Gap analysis...
+   [MISSING] Total missing terms: 9
+     fees_and_charges: 3 missing
+       - administrative_fee
+       - legal_charges
+       - valuation_charges
+     prepayment_and_foreclosure: 2 missing
+       - foreclosure_charges
+       - lock_in_period
+     interest_rates: 1 missing
+       - reset_frequency
+     documents: 1 missing
+       - kyc_documents
+     grievance: 2 missing
+       - complaint_procedure
+       - customer_service
+
+[STEP3] Focused LLM prompt (sanitized for printing):
+[BEGIN PROMPT]
+
+
+PROMPT_VERSION: v1.3
+THIS IS A HDFC HOME-LOAN MITC DOCUMENT.
+
+You are completing a loan document analysis. Advanced rule-based extraction has already found most terms, but these HARD-TO-FIND terms are still MISSING:
+
+fees_and_charges: administrative_fee, legal_charges, valuation_charges
+prepayment_and_foreclosure: foreclosure_charges, lock_in_period
+interest_rates: reset_frequency
+documents: kyc_documents
+grievance: complaint_procedure, customer_service
+
+FOCUS ONLY on these specific missing terms. Our rules now handle common patterns, so look for:
+
+DIFFICULT PATTERNS TO FIND:
+
+PENAL CHARGES & LATE PAYMENTS:
+- Look for: "Penal interest @ 2% p.a. over EBR", "Late payment charge: 2% p.a.", "Default interest rate: 2% over applicable rate"
+- Bounce charges: "Bounce charge: Rs.500", "Returned cheque charges"
+- Penal interest rates: Often buried in fine print or penalty sections
+
+TIERED LTV RATIOS:
+- Look for: "Loan-to-Value Ratio: Up to 90% for loans up to Rs.30 Lakhs", "LTV: Up to 80% for loans up to Rs.50 Lakhs"
+- Table format: "90% - Up to Rs.30 Lakhs", "80% - Up to Rs.50 Lakhs", "75% - Above Rs.50 Lakhs"
+- Maximum LTV: "Maximum LTV: 90% for loans up to Rs.30 Lakhs"
+
+INSURANCE & SECURITY REQUIREMENTS:
+- Insurance coverage: "Insurance coverage: Rs.5 Lakhs minimum", "Life insurance: Mandatory"
+- Property insurance: "Property insurance: As per bank's requirement", "Fire insurance: Compulsory"
+- Primary security: "Primary security: Property mortgage", "Security: Equitable mortgage"
+
+SPECIAL ELIGIBILITY CATEGORIES:
+- NRI: "NRI: Eligible with additional documentation", "Non-Resident Indian: Special rates"
+- Defense personnel: "Defense personnel: Special rates available", "Armed forces: Concessional rates"
+- Government employees: "Government employees: Concessional rates", "Public sector: Special rates"
+
+COMPOUND FEES:
+- Look for: "1.50% or Rs.4,500 whichever is higher", "2% or Rs.5,000 whichever is lower"
+- Processing fees with minimum/maximum: "0.50% to 3.00% (min Rs.2,000, max Rs.10,000)"
+
+FEES & CHARGES:
+- Administrative fees: Often in fine print as "Admin fee", "Documentation charges", or in tariff schedules
+- Legal/Valuation charges: May be listed as "As applicable", "As per actuals", or ranges
+- Template fields: Look for "___", "[ ]", blank spaces after fee names
+
+ELIGIBILITY CRITERIA:
+- Income requirements: "Net monthly income", "Salary requirement", "Income criteria"
+- CIBIL score: May be stated as "Credit score", "Credit rating", "Score requirement"
+- Age limits: "Age criteria", "Maximum/Minimum age", "Age at loan maturity"
+- Employment: "Service requirement", "Experience needed", "Employment criteria"
+
+DOCUMENTS REQUIRED:
+- Income proof: "Salary slips", "Income documents", "ITR", "Form 16"
+- Identity/Address: "KYC documents", "ID proof", "Address proof"
+- Property papers: "Sale deed", "NOC", "Approved plans"
+
+GRIEVANCE & SUPPORT:
+- Contact details: Phone numbers, email IDs, website URLs
+- Escalation process: "Level 1", "Level 2", "Ombudsman", "Senior Manager"
+- Timeline: "7 days", "15 days", response time commitments
+
+ENHANCED EXTRACTION STRATEGY:
+BANK-SPECIFIC: Extract individual vs non-individual prepayment rules and lock-in nuances.
+
+- Check TABLES and SCHEDULES for fee structures and LTV bands
+- Look in APPENDICES and separate sections for document lists
+- Scan for NUMERICAL VALUES (age limits, income thresholds, percentages)
+- Find CONTACT INFORMATION (phone, email, branch details)
+- Look for POLICY STATEMENTS with specific criteria
+- Check FOOTNOTES and small print sections
+- Search for CLAUSE REFERENCES that might contain details
+- Look for PENALTY SECTIONS and INSURANCE CLAUSES
+- Check for SPECIAL CATEGORY MENTIONS (NRI, defense, government)
+
+TEMPLATE HANDLING:
+- If fields are blank ("___", "[ ]", empty spaces), return "Template field - value not specified"
+- If values say "As applicable" or "As per actuals", include that exact text
+- If ranges are given ("18 to 70 years"), extract the full range
+
+EXAMPLE JSON OUTPUTS:
+[{"section":"Penal Charges","field":"late_payment_penalty","value":"2% p.a. over EBR","source_text":"Penal interest @ 2% p.a. over EBR","confidence":0.9}]
+[{"section":"Loan Amount & LTV","field":"ltv_bands","value":"[{\"ltv\":\"90%\",\"min_amount\":0,\"max_amount\":3000000}]","source_text":"90% - Up to Rs.30 Lakhs","confidence":0.9}]
+[{"section":"Security & Insurance","field":"insurance_requirement","value":"INR 500,000 minimum","source_text":"Insurance coverage: Rs.5L minimum","confidence":0.9}]
+[{"section":"Prepayment & Foreclosure","field":"lock_in_period","value":"6 months","source_text":"Lock-in period: 6 months","confidence":0.9}]
+[{"section":"Prepayment & Foreclosure","field":"lock_in_period","value":"first 12 EMI","source_text":"Lock-in period: first 12 EMI","confidence":0.9}]
+[{"section":"Documents","field":"required_documents","value":"List of documents: ID proof, address proof","source_text":"List of documents: ID proof, address proof","confidence":0.9}]
+[{"section":"Documents","field":"required_documents","value":"Duplicate copy of welcome pack, amortisation schedule, key fact statement","source_text":"Request for duplicate copy of welcome pack, amortisation schedule, key fact statement","confidence":0.9}]
+
+Return JSON array format:
+[{"section": "section_name", "field": "field_name", "value": "extracted_value", "source_text": "exact quote", "confidence": 0.9}]
+
+DOCUMENT TEXT:
+MOST IMPORTANT TERMS AND CONDITIONS (MITC)
+ 
+(b)  Guarantee: Names of the Guarantor/s (if any) : 
+ 
+(c)  Other Security interest (if any) : 
+ 
+(a)  Property description :
+ 
+Security of the loan would generally be security interest on the property being financed and/or any other collateral/ interim
+ 
+security as may be required by HDFC. 
+7. 
+Security/Collateral for the Loan [ * ] 
+3.  
+Installment Types : Monthly
+ 
+*  
+Subject to variation in terms of the loan agreement executed/ to be executed between the Borrower/s and HDFC. 
+HDFC shall endeavor to keep its Borrowers informed of any change in interest rates through its official
+website (www.hdfc.com), annual statement of accounts, display in its offices and general announcements from
+time to time. If such change is to the disadvantage of the customer, he/she may within 60 days and without notice
+close his / her account or switch it without having to pay any extra charges or interest.
+6. 
+Purpose of Loan (the purpose for which the loan is sanctioned) : 
+ 
+(iii) Moratorium or subsidy : 
+ 
+(b)  Total number of installments where the loan is repayable in equated monthly installments : 
+2. 
+Interest 
+ 
+(iv) Date of reset of interest : 
+1. 
+Loan
+ 
+Sanctioned Amount : 
+ 
+(i)  Type : 
+ 
+(ii) Interest chargeable : 
+ 
+(v) Modes of communication of changes in Interest rate : HDFC informs of such change in Retail Prime Lending Rate 
+(RPLR) through a 'press release' in major leading news papers across India and on its website www.hdfc.com.
+The Most Important Terms and Conditions (MITC) of the loan between the Borrower/s - and Housing Development
+Finance Corporation Limited, a Company incorporated under the Companies Act, 1956 and having its registered office
+at Ramon House, H T Parekh Marg, 169, Backbay Reclamation, Churchgate, Mumbai 400 020, hereinafter called
+"HDFC" are agreed upon and  mentioned as under:
+4. 
+Repayment of the Loan [ * ] 
+ 
+(a)  The amount of EMI : 
+5. 
+Loan Tenure : 
+1/7
+
+A. Fees and other charges as applicable on application/ during the term of loan/ conversion charges for switching from floating to fixed 
+interest and vice-versa/ and penalty for delayed payments, are as under:
+8.  
+Fees and Other Charges
+ Sr.  Name of the Product/Service 
+Name of Fee/ 
+When Payable  
+Frequency Amount in Rupees
+ No  
+Charge levied
+ 7 
+Fees for Loans under HDFC Reach  
+Processing Fees 
+At   
+Once 
+Upto 1.50% of the loan amount +
+  
+Scheme  
+ 
+Application 
+ 
+taxes and statutory levies and
+  
+ 
+ 
+ 
+ 
+charges, as may be applicable from
+  
+ 
+ 
+ 
+ 
+time to time.
+ 4 
+Fees for Equity/Non Residential 
+Processing Fees 
+At  
+Once 
+Upto 1.50% of the Loan amount or
+  
+Premises Loans. 
+ 
+Application 
+ 
+Rs. 4500/- whichever is higher +
+  
+ 
+ 
+ 
+ 
+taxes and statutory levies and
+    
+ 
+ 
+ 
+ 
+ charges, as may be applicable from
+  
+ 
+ 
+ 
+ 
+time to time. Minimum Retention
+  
+ 
+ 
+ 
+ 
+Amount: Rs. 4500/-
+ 3B Fees for Top-Up Loan (Self Employed  
+Processing Fees 
+At  
+Once 
+Upto 1.50% of the Loan amount or
+  
+Non Professionals) 
+ 
+Application 
+ 
+Rs. 4500/- whichever is higher +
+  
+ 
+ 
+ 
+ 
+taxes and statutory levies and
+  
+ 
+ 
+ 
+ 
+charges, as may be applicable from
+  
+ 
+ 
+ 
+ 
+time to time. Minimum Retention
+  
+ 
+ 
+ 
+ 
+Amount: Rs. 4500/-
+ 8 
+Delay Payment Charges 
+Additional  
+On Accrual 
+Monthly 
+A maximum of 18% P.A on the
+  
+ 
+Interest 
+ 
+ 
+defaulted sum.
+ 3A Fees for Top-Up Loan (Salaried,Self  
+Processing Fees 
+At  
+Once 
+Upto 0.50% of the Loan amount or
+  
+Employed Professionals) 
+ 
+Application 
+ 
+Rs. 3000/- whichever is higher +
+  
+ 
+ 
+ 
+ 
+taxes and statutory levies and
+  
+ 
+ 
+ 
+ 
+charges, as may be applicable from
+  
+ 
+ 
+ 
+ 
+time to time. Minimum Retention
+  
+ 
+ 
+ 
+ 
+Amount: Rs. 3000/-
+ 5 
+Fees for NRI Loans 
+Processing Fees 
+At  
+Once 
+Upto 1.25% of the Loan amount or
+  
+ 
+ 
+Application 
+ 
+Rs. 3000/- whichever is higher +
+  
+ 
+ 
+ 
+ 
+taxes and statutory levies and
+  
+ 
+ 
+ 
+ 
+charges, as may be applicable from
+  
+ 
+ 
+ 
+ 
+time to time. Minimum Retention
+  
+ 
+ 
+ 
+ 
+Amount: Rs. 3000/-
+ 6 
+Fees for Value Plus Loans 
+Processing Fees 
+At  
+Once 
+Upto 1.50% of the Loan amount or
+  
+ 
+ 
+Application 
+ 
+Rs. 3000/- whichever is higher +
+  
+ 
+ 
+ 
+ 
+taxes and statutory levies and
+  
+ 
+ 
+ 
+ 
+charges, as may be applicable from
+  
+ 
+ 
+ 
+ 
+time to time.
+ 1A Fees for Housing Loan/ Extension/ 
+Processing Fees 
+At  
+Once 
+Upto 0.50% of the loan amount or
+  
+Improvement of Housing Loan /Refinance  
+ 
+Application 
+ 
+Rs. 3000/- whichever is higher +
+  
+of Housing Loan/Plot Loans for Housing  
+ 
+ 
+ 
+taxes and statutory levies and
+  
+(Salaried, Self Employed Professionals) 
+ 
+ 
+ 
+ charges, as may be applicable from
+  
+ 
+ 
+ 
+ 
+ time to time. Minimum Retention
+  
+ 
+ 
+ 
+ 
+Amount: Rs. 3000/-
+ 1B Fees for Non Housing Loan/Extension/ 
+Processing Fees 
+At  
+Once 
+Upto 0.50% of the loan amount or
+  
+Improvement of Non-Housing Loan/ 
+ 
+Application 
+ 
+Rs. 4500/- whichever is higher +
+  
+Refinance of Non-Housing Loan/Plot Loans   
+ 
+ 
+ 
+taxes and statutory levies and
+  
+for Non- Housing (Salaried,Self Employed  
+ 
+ 
+ 
+charges, as may be applicable
+  
+Professionals) 
+ 
+ 
+ 
+from time to time. Minimum
+  
+ 
+ 
+ 
+ 
+Retention Amount: Rs. 4500/- 
+ 2 
+Fees for Housing/Extension/Improvement/ 
+Processing Fees 
+At  
+Once 
+Upto 1.50% of the Loan amount or
+  
+Refinance/Plot Loans for Self Employed 
+ 
+Application 
+ 
+Rs. 4500/- whichever is higher +
+  
+Non Professionals. 
+ 
+ 
+ 
+taxes and statutory levies and
+  
+ 
+ 
+ 
+ 
+charges, as may be applicable from
+  
+ 
+ 
+ 
+ 
+time to time. Minimum   Retention
+  
+ 
+ 
+ 
+ 
+Amount: Rs. 4500/- 
+2/7
+
+ 10 Statutory Charges 
+CERSAI   
+On  
+Once 
+As per charges levied by CERSAI.
+  
+ 
+ 
+Disbursement/
+  
+ 
+ 
+Change of
+  
+ 
+ 
+security 
+ 
+ 12 Switch to Lower Rate in Variable rate 
+Conversion Fees 
+On Conversion 
+On every 
+Upto 0.50% of the Principal
+  
+Loans (Housing/Extension/Improvement) 
+ 
+ 
+Spread 
+Outstanding and undisbursed
+  
+ 
+ 
+ 
+change 
+amount (if any) at the time of
+  
+ 
+ 
+ 
+ 
+Conversion or a cap Rs. 50000
+  
+ 
+ 
+ 
+ 
+plus taxes whichever is lower.
+ 17 Cheque/ECS  Dishonour Charge 
+Miscellaneous 
+On Cheque 
+Depends  
+Rs. 200/- Per Dishonour.
+  
+ 
+ Receipts 
+Dishonour 
+on no. of
+  
+ 
+ 
+ 
+Dishonour
+ 20 List of documents 
+Miscellaneous 
+Event 
+On every 
+Upto Rs. 500 plus taxes.
+  
+ 
+Receipts 
+ 
+request
+ 24 Increase/Decrease in loan term 
+Processing Fees 
+At Request 
+Once 
+Rs 500 plus  taxes and statutory
+  
+ 
+ 
+ 
+ 
+levies and charges, as may be
+  
+ 
+ 
+ 
+ 
+applicable from time to time
+ 19 Fees on account of External Opinion  
+Miscellaneous 
+On incurring 
+ 
+As per actuals.
+  
+ 
+Receipts 
+expenses
+ 21  PDC swap 
+Miscellaneous 
+Event 
+On every 
+Upto Rs. 500 plus taxes.
+  
+ 
+Receipts 
+ 
+request
+ 14 Switch from Trufixed fixed rate to 
+Conversion Fees 
+On Conversion 
+Once 
+1.75% of the Principal Outstanding
+  
+Variable rate  
+ 
+ 
+ 
+and undisbursed amount
+  
+ 
+ 
+ 
+ 
+(if any) plus taxes at the time of
+  
+ 
+ 
+ 
+ 
+Conversion.
+ 15 Switch to Lower Rate 
+Conversion Fees 
+On Conversion 
+On every 
+Half of the spread difference on the
+  
+(Non–Housing Loans) 
+ 
+ 
+Spread 
+principal outstanding and
+  
+ 
+ 
+ 
+change 
+undisbursed amount (if any) plus
+  
+ 
+ 
+ 
+ 
+taxes, with a minimum
+  
+ 
+ 
+ 
+ 
+fee of 0.5% and Max. 1.50%.
+ 11 Statutory Charges 
+Stamp Duty/ 
+On Fixing of 
+Once 
+As applicable in the respective state.
+  
+ 
+MOD/MOE 
+Disbursement 
+ 
+ 18 Photo Copy of Documents 
+Miscellaneous 
+Event 
+On every 
+Upto Rs. 500 plus taxes.
+  
+ 
+Receipts  
+ 
+request
+ 16 Switch to Lower Rate (Plot  Loans) 
+Conversion Fees 
+On Conversion 
+On every 
+0.5% of principal outstanding and
+  
+ 
+ 
+ 
+Spread 
+undisbursed amount (if any)
+  
+ 
+ 
+ 
+change 
+plus taxes at the time of Conversion. 
+ 23 Re-appraisal of loan after 6 months 
+Processing Fees 
+At  
+Once 
+Rs. 2000 plus  taxes and statutory
+  
+from sanction 
+ 
+Re-Application 
+ 
+levies and charges, as may be
+  
+ 
+ 
+ 
+ 
+applicable from time to time. 
+ 22 Disbursement cheque cancellation 
+Miscellaneous 
+Event 
+On every 
+Upto Rs. 500 plus taxes.
+  
+charge post disbursement 
+Receipts 
+ 
+occurrence
+ 9 
+Expenses to cover costs 
+Incidental 
+On i
+
+JSON RESPONSE:
+
+
+[END PROMPT]
+
+[STEP3b] Small LLM test call...
+   [OK] LLM returned: 3 facts
+     - fees_and_charges.legal_charges: As applicable in the respective state. (conf=0.9)
+       -> src: 11 Statutory Charges Stamp Duty/ MOD/MOE On Fixing of Disbursement Once As applicable in the respective state. ()
+     - interest_rates.reset_frequency: Template field - value not specified (conf=0.9)
+       -> src: (iv) Date of reset of interest : ()
+     - grievance.customer_service: www.hdfc.com (conf=0.9)
+       -> src: HDFC shall endeavor to keep its Borrowers informed of any change in interest rates through its official website (www.hdfc.com), annual state... ()
+
+[STEP4] Full smart extraction...
+   [RESULT] Smart extraction total: 19 facts
+     [SECTION] fees_and_charges: 8 facts
+       - fees_and_charges.processing_fee: 1.50% (conf=0.75)
+         -> src: s  No   Charge levied  7  Fees for Loans under HDFC Reach   Processing Fees  At    Once  Upto 1.50% of the loan amount +    Scheme     Appli... ()
+       - fees_and_charges.conversion_fee: 1.75% (conf=0.75)
+         -> src: ufixed fixed rate to  Conversion Fees  On Conversion  Once  1.75% of the Principal Outstanding    Variable rate         and undisbursed amou... ()
+       - fees_and_charges.fee_amount: 4500 (conf=0.75)
+         -> src: of the Loan amount or    Premises Loans.    Application    Rs. 4500/- whichever is higher +            taxes and statutory levi ()
+       - fees_and_charges.administrative_fee: INR 50,000,000 (conf=0.9)
+         -> src: 18 Photo Copy of Documents Miscellaneous Receipts Event On every request Upto Rs. 500 plus taxes. ()
+       - fees_and_charges.administrative_fee: INR 50,000,000 (conf=0.9)
+         -> src: 20 List of documents Miscellaneous Receipts Event On every request Upto Rs. 500 plus taxes. ()
+       - fees_and_charges.legal_charges: As applicable in the respective state. (conf=0.9)
+         -> src: 11 Statutory Charges Stamp Duty/ MOD/MOE On Fixing of Disbursement Once As applicable in the respective state. ()
+       - fees_and_charges.legal_charges: As per actuals. (conf=0.9)
+         -> src: 19 Fees on account of External Opinion Miscellaneous Receipts On incurring expenses As per actuals. ()
+       - fees_and_charges.valuation_charges: As per actuals. (conf=0.9)
+         -> src: 19 Fees on account of External Opinion Miscellaneous Receipts On incurring expenses As per actuals. ()
+     [SECTION] prepayment_and_foreclosure: 2 facts
+       - prepayment_and_foreclosure.foreclosure_penalty: 25.0% (conf=0.75)
+         -> src: d up till 36 months, the borrower shall have  the option to prepay up to 25% of the opening principal amount every financial year, of the  l... ()
+       - prepayment_and_foreclosure.foreclosure_option: 25.0% (conf=0.75)
+         -> src: d up till 36 months, the borrower shall have  the option to prepay up to 25% of the opening principal amount every financial year, of the  l... ()
+     [SECTION] interest_rates: 4 facts
+       - interest_rates.benchmark_rate: RPLR (conf=0.75)
+         -> src: HDFC informs of such change in Retail Prime Lending Rate  (RPLR) through a 'press release' in major leading news papers acr ()
+       - interest_rates.reset_communication: HDFC shall endeavor to keep its Borrowers informed of any change in interest rates through its official
+website (www (conf=0.75)
+         -> src: executed/ to be executed between the Borrower/s and HDFC.  HDFC shall endeavor to keep its Borrowers informed of any change in interest rate... ()
+       - interest_rates.notification_method: www.hdfc.com. (conf=0.75)
+         -> src: such change in Retail Prime Lending Rate  (RPLR) through a 'press release' in major leading news papers across India and on its website www.... ()
+       - interest_rates.benchmark: RPLR (conf=0.75)
+         -> src: HDFC informs of such change in Retail Prime Lending Rate  (RPLR) through a 'press release' in major leading news papers acr ()
+     [SECTION] documents: 1 facts
+       - documents.required_documents: Miscellaneous (conf=0.75)
+         -> src: Receipts  Dishonour  on no. of          Dishonour  20 List of documents  Miscellaneous  Event  On every  Upto Rs. 500 plus taxes.      Recei... ()
+     [SECTION] grievance: 1 facts
+       - grievance.process: There can be instances where the borrower is not satisfied with the services provided (conf=0.75)
+         -> src: ine): Within 3 working days of the receipt of request. 14.  Grievance Redressal:   There can be instances where the Borrower is not satisfie... ()
+     [SECTION] loan_amount_and_ltv: 1 facts
+       - loan_amount_and_ltv.sanctioned_amount: opening principal amount (conf=0.75)
+         -> src: borrower shall have  the option to prepay up to 25% of the opening principal amount every financial year, of the  loan, without any prepayme... ()
+     [SECTION] document_info: 1 facts
+       - document_info.bank_name: Hdfc (conf=0.75)
+         -> src: other collateral/ interim   security as may be required by HDFC.  7.  Security/Collateral for the Loan [ * ]  3.   Installm ()
+     [SECTION] security_and_insurance: 1 facts
+       - security_and_insurance.primary_security: (if any) : (conf=0.75)
+         -> src: uarantee: Names of the Guarantor/s (if any) :    (c)  Other Security interest (if any) :    (a)  Property description :   Security of the lo... ()
