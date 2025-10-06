@@ -208,7 +208,7 @@ def apply_modern_theme():
         }
         p, span, label, div { 
           font-family: 'Inter', sans-serif !important;
-          color: var(--secondary) !important;
+          color: #000000 !important;
           line-height: 1.6 !important;
         }
         
